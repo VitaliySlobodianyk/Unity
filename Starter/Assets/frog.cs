@@ -2,22 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof (Rigidbody2D))]
+[RequireComponent(typeof(Rigidbody2D))]
 public class frog : MonoBehaviour
 {
     // Start is called before the first frame update
 
 
     Vector2 position;
-  
+
     [SerializeField] float speed;
     [SerializeField] float jumpHeight;
-    [SerializeField] Rigidbody2D rb;
+    [SerializeField] private LayerMask layerMask;
+
+    private Rigidbody2D rb;
+    private BoxCollider2D boxCollider;
 
     float direction;
-    float verticalDirection;
+    bool jump;
     float previousDirection=0;
-
+  
+   
     void Flip(float currentDirection)
     {
         if (currentDirection < 0 && currentDirection!=previousDirection)
@@ -34,28 +38,29 @@ public class frog : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        boxCollider = GetComponent<BoxCollider2D>();
     }
 
 
     // Update is called once per frame
     void Update()
     {
-        direction =Input.GetAxisRaw("Horizontal");
-        verticalDirection = Input.GetAxisRaw("Vertical");
-        Flip(direction);
-     
-        if (direction != 0) {
-        rb.velocity = Vector2.right *  direction * speed * Time.deltaTime;
-        }
-        Debug.Log(rb.position.y * jumpHeight);
-        Debug.Log(Mathf.Sqrt(jumpHeight));
-        if (verticalDirection == 1 && rb.position.y < Mathf.Sqrt(jumpHeight)) {
-            
-            rb.velocity = Vector2.up * jumpHeight * Time.deltaTime;
-            
-        }
        
-      
-
+        jump = Input.GetKeyDown(KeyCode.Space);
+        Flip(direction);
+        if ( jump  && isGrounded() ) {                      
+                rb.velocity= Vector2.up * jumpHeight;
+        }
+        if (Input.GetKeyDown(KeyCode.RightArrow)) {
+            rb.velocity = Vector2.right * speed * Time.deltaTime;
+        }
+        if (Input.GetKeyDown(KeyCode.LeftArrow)){
+            rb.velocity =  Vector2.right * (-speed) * Time.deltaTime;
+        }
+    }
+    private bool isGrounded()
+    {
+       RaycastHit2D raycast =  Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size,0f,Vector2.down* 0.1f, layerMask);
+        return raycast.collider != null;
     }
 }

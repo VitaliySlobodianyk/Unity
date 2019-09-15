@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//To run this script you  have  to  remove  RigidBody component from  your  
+//Character and  apply  Charater Controller component
 public class FrogMoove2 : MonoBehaviour
 {
     public CharacterController controller;
@@ -10,19 +12,13 @@ public class FrogMoove2 : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        controller = new CharacterController();
-        horizontalMove = new Vector3();
+        controller = GetComponent<CharacterController>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        horizontalMove.x = Input.GetAxisRaw("Horizontal") * speed * Time.deltaTime;
-
+        controller.Move(Vector3.right * Input.GetAxisRaw("Horizontal") * speed * Time.deltaTime);
     }
 
-    private void FixedUpdate()
-    {
-        controller.Move(horizontalMove);
-    }
 }

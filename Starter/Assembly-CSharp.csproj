@@ -65,6 +65,9 @@
     <Compile Include="Assets\FrogMoove3.cs" />
     <Compile Include="Assets\FrogMoove4.cs" />
     <Compile Include="Assets\FrogMoove5.cs" />
+    <Compile Include="Assets\FrogMoove6.cs" />
+    <Compile Include="Assets\FrogMoove7.cs" />
+    <Compile Include="Assets\FrogMoove8.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Unity/Starter/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>

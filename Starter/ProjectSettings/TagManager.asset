@@ -41,3 +41,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: decorations
+    uniqueID: 2483241369
+    locked: 0
+  - name: platforms
+    uniqueID: 2271138219
+    locked: 0
+  - name: bots
+    uniqueID: 277091733
+    locked: 0
+  - name: player
+    uniqueID: 3473048485
+    locked: 0
