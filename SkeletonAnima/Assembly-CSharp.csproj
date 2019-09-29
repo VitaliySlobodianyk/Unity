@@ -88,6 +88,7 @@
     <Compile Include="Assets\Anima2D\Scripts\SpriteMeshInstance.cs" />
     <Compile Include="Assets\beh.cs" />
     <Compile Include="Assets\DesktopController.cs" />
+    <Compile Include="Assets\GemController.cs" />
     <Compile Include="Assets\Scripts\CharacterController2D.cs" />
     <None Include="Assets\Anima2D\Examples\Shaders\VisibleInsideMask.shader" />
     <None Include="Assets\Anima2D\Examples\Shaders\VisibleOutsideMask.shader" />
@@ -96,18 +97,6 @@
     <None Include="Assets\Anima2D\Licenses.txt" />
     <None Include="Assets\Anima2D\Examples\Shaders\VertexLitOneDirectional.shader" />
     <None Include="Assets\Anima2D\Readme.txt" />
-    <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>C:/Unity/SkeletonAnima/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>C:/Unity/SkeletonAnima/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/Unity/SkeletonAnima/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Analytics.DataPrivacy">
-      <HintPath>C:/Unity/SkeletonAnima/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Unity/SkeletonAnima/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
@@ -117,11 +106,17 @@
     <Reference Include="Unity.VSCode.Editor">
       <HintPath>C:/Unity/SkeletonAnima/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.TextMeshPro.Editor">
+      <HintPath>C:/Unity/SkeletonAnima/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>C:/Unity/SkeletonAnima/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
       <HintPath>C:/Unity/SkeletonAnima/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.CollabProxy.Editor">
+      <HintPath>C:/Unity/SkeletonAnima/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="com.unity.multiplayer-weaver.Editor">
       <HintPath>C:/Unity/SkeletonAnima/Library/ScriptAssemblies/com.unity.multiplayer-weaver.Editor.dll</HintPath>
@@ -143,6 +138,12 @@
     </Reference>
     <Reference Include="UnityEngine.SpatialTracking">
       <HintPath>C:/Unity/SkeletonAnima/Library/ScriptAssemblies/UnityEngine.SpatialTracking.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>C:/Unity/SkeletonAnima/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Analytics.DataPrivacy">
+      <HintPath>C:/Unity/SkeletonAnima/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.XR.LegacyInputHelpers">
       <HintPath>C:/Unity/SkeletonAnima/Library/ScriptAssemblies/UnityEditor.XR.LegacyInputHelpers.dll</HintPath>
