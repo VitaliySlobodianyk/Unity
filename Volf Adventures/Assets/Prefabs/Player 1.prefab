@@ -73,7 +73,7 @@ GameObject:
   - component: {fileID: 7823359885894422525}
   - component: {fileID: 7823359885894422527}
   m_Layer: 9
-  m_Name: ToothAttack
+  m_Name: ToothAttackt
   m_TagString: MOuth
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -87,7 +87,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7823359885894422515}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.58, y: -0.32, z: 0}
+  m_LocalPosition: {x: 0.807, y: -0.457, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7823359886479777639}
@@ -166,6 +166,7 @@ GameObject:
   - component: {fileID: 7823359886479777632}
   - component: {fileID: 7823359886479777635}
   - component: {fileID: 2036809530835932954}
+  - component: {fileID: 6634481813250138526}
   m_Layer: 9
   m_Name: Player 1
   m_TagString: Player
@@ -181,7 +182,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7823359886479777561}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.89, y: -1.04, z: 0}
+  m_LocalPosition: {x: -9.89, y: -1.04, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7823359885089861863}
@@ -352,6 +353,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 400
   smoothmentRait: 0.3
+  head: {fileID: 6634481813250138526}
   whatIsGround:
     serializedVersion: 2
     m_Bits: 311
@@ -380,6 +382,7 @@ MonoBehaviour:
   body: {fileID: 690827760296886498, guid: c2dc3ca7ab01b254e889ebdd9504fac6, type: 3}
   menu: {fileID: 0}
   gameManager: {fileID: 0}
+  soundManager: {fileID: 0}
   godMode: 0
 --- !u!114 &7823359886479777632
 MonoBehaviour:
@@ -505,6 +508,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!58 &6634481813250138526
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7823359886479777561}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.48, y: -0.25}
+  serializedVersion: 2
+  m_Radius: 0.39
 --- !u!1 &7823359886494836441
 GameObject:
   m_ObjectHideFlags: 0

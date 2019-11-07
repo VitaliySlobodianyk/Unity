@@ -101,3 +101,17 @@ MonoBehaviour:
     loop: 0
     isPlayng: 0
     source: {fileID: 0}
+  - name: Victory
+    music: {fileID: 8300000, guid: 477cbc36040de5b498da259e9f905429, type: 3}
+    volume: 0.9
+    pitch: 2.21
+    loop: 0
+    isPlayng: 0
+    source: {fileID: 0}
+  - name: Menu
+    music: {fileID: 8300000, guid: 182e1e420738a764e8f6896692afc419, type: 3}
+    volume: 0.13
+    pitch: 2.21
+    loop: 1
+    isPlayng: 0
+    source: {fileID: 0}

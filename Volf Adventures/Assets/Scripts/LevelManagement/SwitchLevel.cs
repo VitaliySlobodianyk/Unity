@@ -8,20 +8,28 @@ public class SwitchLevel : MonoBehaviour
 
    public  MenuManager menu;
     public GameManager game;
+    public GameObject poof;
     public bool lastLevel = false; 
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player")) {
-            menu.ShowWinMenu();
-            if (lastLevel)
-            {
-                SavegameManager.CleanSave();
-            }
-            else {
-                game.Save();
-            }
-           
+            Instantiate(poof, transform.position, Quaternion.identity);
+            FindObjectOfType<SoundManager>().Play("Victory");
+            Destroy(collision.gameObject);
+            Invoke("ShowMenuDelayed", 1.5f);
+        }
+    }
+
+   void ShowMenuDelayed() {
+        menu.ShowWinMenu();
+        if (lastLevel)
+        {
+            SavegameManager.CleanSave();
+        }
+        else
+        {
+            game.Save();
         }
     }
 }

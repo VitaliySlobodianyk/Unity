@@ -11,7 +11,7 @@ public class EnemyState : MonoBehaviour
     public GameObject meat;
     private float curHp;
     public float GetHp { get { return curHp; } }
-
+    public bool IsDead { get { return curHp <= 0; } }
     Animator animator;
     
    
@@ -20,7 +20,6 @@ public class EnemyState : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         curHp = maxHp;
-        FindObjectOfType<SoundManager>().Play("EnemyWalk");
     }
 
     public void TakeDamage(float amount) {
@@ -36,17 +35,22 @@ public class EnemyState : MonoBehaviour
         }
     }
     public void Death() {
-        FindObjectOfType<SoundManager>().Stop("EnemyWalk");
         animator.SetBool("Dead", true);
         Invoke("DeathEffect", 1f);
-        Destroy(gameObject,1f);
-        
+        Destroy(gameObject,1f);      
     }
     private void DeathEffect() {
-        Instantiate(dead, transform.position, transform.rotation);
-        Instantiate(deathEffect, transform.position, Quaternion.identity);
-        GameObject meatReady = Instantiate(meat, transform.position, Quaternion.identity);
+        if (dead != null) {
+            Instantiate(dead, transform.position, transform.rotation);
+        }
+        if (deathEffect!=null) {
+            Instantiate(deathEffect, transform.position, Quaternion.identity);
+        }
+        if (meat != null) {
+            GameObject meatReady = Instantiate(meat, transform.position, Quaternion.identity);
+        }
     }
+      
    
     public void Damaged() {
         animator.SetBool("Damaged", false);

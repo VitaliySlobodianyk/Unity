@@ -16,9 +16,10 @@ public class MenuManager : MonoBehaviour
     public  GameObject deathMenu;
     public GameObject winMenu;
 
-    public static bool onPause {  get; private set; }
+    public static bool onPause {  get; set; }
     private bool death;
     private bool win;
+    private Time time;
 
     delegate void ShowMethod(bool show); 
     void Start()
@@ -28,7 +29,8 @@ public class MenuManager : MonoBehaviour
         {
             instance = this;
         }
-
+        
+        Resume();
     }
    void Update()
     {
@@ -51,10 +53,12 @@ public class MenuManager : MonoBehaviour
         Time.timeScale = 0f; 
     }
     public void Resume() {
-        onPause = false;
-        pauseMenu.SetActive(false);   
+        pauseMenu.SetActive(false);
         Time.timeScale = 1f;
-        
+        instance.Invoke("Resumer", 0.5f);
+    }
+    private void Resumer() {
+        onPause = false;
     }
     public void ShowDeathMenu()
     {
@@ -105,6 +109,7 @@ public class MenuManager : MonoBehaviour
     private void Show() {
         deathMenu.SetActive(true);
     }
+   
 
 
 }

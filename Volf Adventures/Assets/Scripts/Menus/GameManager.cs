@@ -17,17 +17,14 @@ public class GameManager : MonoBehaviour
 
     public static bool newGame = true;
 
-    public static int gemsGount { get; private set; }
+    public int gemsGount { get; private set; }
 
     private HealthBarController healthController;
     private PlayerState state;
 
     void Start()
     {
-        if (instance == null)
-        {
-            instance = this;
-        }
+      
         gemsGount = 0;
         if (healthBar != null)
         {
@@ -38,10 +35,17 @@ public class GameManager : MonoBehaviour
         {
             state = player.GetComponent<PlayerState>();
         }
-        if (!newGame) {
+        if (!newGame)
+        {
             LoadPlayer();
         }
-        FindObjectOfType<SoundManager>().Play("Main");
+
+        if (SceneName() == "MainMenu") {
+            FindObjectOfType<SoundManager>().Play("Menu");
+        }
+        else {
+            FindObjectOfType<SoundManager>().Play("Main");
+        }
 
     }
 
@@ -67,9 +71,9 @@ public class GameManager : MonoBehaviour
     }
     public void Save()
     {
-        Debug.Log(player.transform);
         float[] position = new float[3] { player.transform.position.x, player.transform.position.y, player.transform.position.z };
         SavegameManager.saveGame(new PlayerData(state.Hp, gemsGount, SceneName(), position));
+        Debug.Log("Saved");
     }
 
     public void LoadGame()
@@ -86,7 +90,6 @@ public class GameManager : MonoBehaviour
         SetGemsCount(data.gemsCount);
         state.Hp = data.health;
         Vector3 position = new Vector3(data.position[0], data.position[1], data.position[2]);
-        Debug.Log(position);
         player.transform.position= position;
         CleanPlayerPath();
         newGame = true;

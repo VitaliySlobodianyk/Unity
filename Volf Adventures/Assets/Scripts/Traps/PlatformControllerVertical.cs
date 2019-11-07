@@ -15,8 +15,6 @@ public class PlatformControllerVertical : MonoBehaviour
     }
     void Update()
     {
-        Debug.Log( "Down " + (Vector2.Distance(startPosition, transform.position) > slidingDistance && transform.position.y > startPosition.y));
-        Debug.Log("Up " + (Vector2.Distance(startPosition, transform.position) > slidingDistance && transform.position.y < startPosition.y));
         if (Vector2.Distance(startPosition, transform.position) > slidingDistance && transform.position.y < startPosition.y)
         {
             Platformcontroller.makeVelocity( ref speed, "+");

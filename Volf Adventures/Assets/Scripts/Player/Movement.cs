@@ -5,15 +5,15 @@ using UnityEngine.Events;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Movement : MonoBehaviour
 {
-    Animator animator;
-    Rigidbody2D rb;
-    public SoundManager soundManager;
+   
 
     [SerializeField] float speed;
     [SerializeField] float smoothmentRait;
+    public CircleCollider2D head;
     Vector2 targetVelocity;
     Vector2 currentVelosity;
     bool faceRight = true;
+    
 
     [SerializeField] LayerMask whatIsGround;
     [SerializeField] GameObject groundCheck;
@@ -22,14 +22,19 @@ public class Movement : MonoBehaviour
     [Range(1, 2)] [SerializeField] float doubleJumpEnforcement = 1.5f;
     public int initialJumpCount = 2;
     [SerializeField] bool airControl;
-   
+
+    Animator animator;
+    Rigidbody2D rb;
     int jumpCount;
-    bool onAir = false;
+    float timeBtwJumps = 0.1f;
+    float lastJump;
 
     [SerializeField] BoxCollider2D headColl;
     [SerializeField] GameObject cellingCheck;
     [Range(0, 2)] [SerializeField] float crouchMod;
     [SerializeField] float cellRadius;
+   
+
     PlayerState state;
     Transform playerTransform;
     MovementController controller;
@@ -45,17 +50,15 @@ public class Movement : MonoBehaviour
         jumpCount = initialJumpCount;
         controller = GetComponent<MovementController>();
         walkPlay = 0f;
+        lastJump = Time.time;
     }
 
     void SetJumpCount() {
-        if (Physics2D.OverlapCircle(groundCheck.transform.position, groundRadius, whatIsGround) && !onAir)
+        if (Physics2D.OverlapCircle(groundCheck.transform.position, groundRadius, whatIsGround) && Time.time- lastJump > timeBtwJumps)
         {
             jumpCount = initialJumpCount;
         }
-        else if (onAir && Physics2D.OverlapCircle(groundCheck.transform.position, groundRadius, whatIsGround))
-        {
-            onAir = false;
-        }
+      
     }
     public void Move(float move, bool jump, bool crouch)
     {
@@ -66,11 +69,11 @@ public class Movement : MonoBehaviour
 
             if (move != 0 && walkPlay <= 0)
             {
-                soundManager.Play("PlayerWalk");
+                state.soundManager.Play("PlayerWalk");
                 walkPlay = toWalkPlay;
             }
             else if (move==0){
-                soundManager.Stop("PlayerWalk");
+               state.soundManager.Stop("PlayerWalk");
                 walkPlay = 0;
             }
             walkPlay -= Time.deltaTime;
@@ -105,13 +108,13 @@ public class Movement : MonoBehaviour
 
                 targetVelocity = new Vector2(move * speed * Time.fixedDeltaTime, rb.velocity.y);
                 rb.velocity = Vector2.SmoothDamp(rb.velocity, targetVelocity, ref currentVelosity, smoothmentRait);
-                if (jump && jumpCount>0 )
+                if (jump && jumpCount>0 &&  Time.time - lastJump > timeBtwJumps)
                 {            
                     rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
                     animator.SetBool("StartJump", true);
-                    soundManager.Play("Jump");
-                    jumpCount-=2;
-                    onAir = true;
+                    state.soundManager.Play("Jump");
+                    jumpCount-=1;
+                    lastJump = Time.time;
                     Invoke("EndStartJump", 0.1f);
                 }              
             }
@@ -176,7 +179,6 @@ public class Movement : MonoBehaviour
         controller.crouch = false;
         transform.localScale += new Vector3(-1, -1, 0);
         state.godMode = false;
+        head.enabled = false;
     }
-
-
 }

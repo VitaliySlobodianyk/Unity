@@ -26,10 +26,9 @@ public class MovementController : MonoBehaviour
             else {
                 jump = false;
             }
-
-
             if (Input.GetKeyUp(KeyCode.C)) {
                 crouch = !crouch;
+                movement.head.enabled = crouch;
             }
             if (Input.GetButtonUp("Fire1") && !crouch)
             {

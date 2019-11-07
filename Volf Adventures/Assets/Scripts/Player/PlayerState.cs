@@ -42,6 +42,7 @@ public class PlayerState : MonoBehaviour
         {
             soundManager.Play("PlayerDamage");
             hp -= damage;
+            GameManager.newGame = true;
             if (hp <= 0)
             {
                 Death();
