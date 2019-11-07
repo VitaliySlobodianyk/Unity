@@ -10,8 +10,8 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public GameObject player;
 
-
     public TextMeshProUGUI counter;
+    public TextMeshProUGUI bullets;
     public Slider healthBar;
 
 
@@ -23,17 +23,16 @@ public class GameManager : MonoBehaviour
     private PlayerState state;
 
     void Start()
-    {
-      
+    {      
         gemsGount = 0;
         if (healthBar != null)
         {
             healthController = healthBar.GetComponent<HealthBarController>();
             ChangeHealth();
         }
-        if (player != null)
-        {
+        if (player!=null) {
             state = player.GetComponent<PlayerState>();
+            Debug.Log("player");
         }
         if (!newGame)
         {
@@ -45,11 +44,13 @@ public class GameManager : MonoBehaviour
         }
         else {
             FindObjectOfType<SoundManager>().Play("Main");
-        }
-
+        }   
     }
 
-
+    public void ChangeRoundsCount(int value)
+    {
+        bullets.SetText(value.ToString());
+    }
     public void ChangeGemsCount()
     {
         gemsGount++;
@@ -60,6 +61,7 @@ public class GameManager : MonoBehaviour
         gemsGount = num;
         counter.text = gemsGount.ToString();
     }
+
     public void ChangeHealth()
     {
         healthController.ChangeHp();
@@ -73,7 +75,6 @@ public class GameManager : MonoBehaviour
     {
         float[] position = new float[3] { player.transform.position.x, player.transform.position.y, player.transform.position.z };
         SavegameManager.saveGame(new PlayerData(state.Hp, gemsGount, SceneName(), position));
-        Debug.Log("Saved");
     }
 
     public void LoadGame()

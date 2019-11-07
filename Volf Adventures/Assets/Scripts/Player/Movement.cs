@@ -57,16 +57,14 @@ public class Movement : MonoBehaviour
         if (Physics2D.OverlapCircle(groundCheck.transform.position, groundRadius, whatIsGround) && Time.time- lastJump > timeBtwJumps)
         {
             jumpCount = initialJumpCount;
-        }
-      
+        }    
     }
+
     public void Move(float move, bool jump, bool crouch)
     {
-        SetJumpCount();
-      
+        SetJumpCount(); 
         if (!state.isDead)
         {
-
             if (move != 0 && walkPlay <= 0)
             {
                 state.soundManager.Play("PlayerWalk");
@@ -84,9 +82,7 @@ public class Movement : MonoBehaviour
             {
                 crouch = Physics2D.OverlapCircle(cellingCheck.transform.position, cellRadius, whatIsGround);
             }
-
-            
-
+          
             if (jumpCount>0 || airControl)
             {
                 if (crouch)

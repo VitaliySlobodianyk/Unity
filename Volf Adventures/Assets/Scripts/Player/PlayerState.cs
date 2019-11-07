@@ -9,16 +9,18 @@ public class PlayerState : MonoBehaviour
     public GameManager gameManager;
     public SoundManager soundManager;
     public bool isDead { get; private set; }
-    int hp, mhp = 100, xp;
-
     public int Hp { get { return hp; } set { this.hp = value; } }
     public int MHp { get { return mhp; } }
-    Animator animator;
-    public bool godMode = false;
+    
+    public bool godMode = false;    
+    public int bulletsCount { get; private set;}
 
+    Animator animator;
     Rigidbody2D rb;
+    int hp, mhp = 100;
     void Start()
     {
+        bulletsCount = 0;
         hp = mhp;
         animator = GetComponent<Animator>();
         gameManager.ChangeHealth();
@@ -69,6 +71,13 @@ public class PlayerState : MonoBehaviour
     {
         Instantiate(body, transform.position, transform.rotation);
         Destroy(gameObject);
+    }
+
+  public void addBullets(int amount) {
+        bulletsCount += amount;
+    }
+  public void shoot() {
+        bulletsCount--;
     }
 
 }
