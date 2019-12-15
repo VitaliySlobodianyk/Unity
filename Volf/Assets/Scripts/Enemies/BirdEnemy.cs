@@ -92,8 +92,7 @@ public class BirdEnemy : MonoBehaviour
 
         if (distance <= nextWaypointDistance) {
             currentWaypoint++;
-        }
-        
+        }     
       
     }
 
@@ -106,18 +105,6 @@ public class BirdEnemy : MonoBehaviour
             faceRight = true;
         }    
     }
-    public void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            PlayerState player = collision.gameObject.GetComponent<PlayerState>();
-            if (player != null) {
-                player.TakeDamage(10);
-            }
-        
-        }
-
-    }
-
+   
 
 }
